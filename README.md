@@ -1,1 +1,1 @@
-"# Anti-Stable-Diffusion" 
+# Anti-Stable-Diffusion
