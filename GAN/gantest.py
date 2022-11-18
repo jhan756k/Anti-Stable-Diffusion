@@ -157,4 +157,3 @@ for epoch in range(n_epochs):
             save_image(generated_imgs.data[:25], f"data{epoch}.jpg", nrow=5, normalize=True)
 
     print(f"[Epoch {epoch}/{n_epochs}] [D loss: {d_loss.item():.6f}] [G loss: {g_loss.item():.6f}] [Elapsed Time: {time.time() - start_time:.2f}s]")
-
