@@ -1,3 +1,4 @@
+# Allows overlapping blur pixels
 import cv2, random
 image = cv2.imread("./images/egon.jpg")
 
@@ -8,4 +9,4 @@ for _ in range(int((image.shape[0]*image.shape[1])*blur_rate)):
     y = random.randint(0, image.shape[1] - 1)
     image[x, y] = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 
-cv2.imwrite("./images/egon_noise.jpg", image)
+cv2.imwrite("./images/monalisa_blur.png", image)
