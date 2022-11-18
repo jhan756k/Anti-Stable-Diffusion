@@ -62,7 +62,7 @@ class Generator(nn.module):
             *block(128, 256),
             *block(256, 512),
             *block(512, 1024),
-            nn.Linear(1024, int(np.prod(img_shape)))
+            nn.Linear(1024, int(np.prod(img_shape))),
             nn.Tanh()
         )
     
@@ -134,4 +134,27 @@ for epoch in range(n_epochs):
 
         optimizer_G.zero_grad()
 
-        
+        z = Variable(Tensor(np.random.normal(0, 1, (imgs.shape[0], latent_dim))))
+
+        generated_imgs = generator(z)
+        g_loss = adversarial_loss(discriminator(generated_imgs), real)
+
+        g_loss.backward()
+        optimizer_G.step()
+
+        optimizer_D.zero_grad()
+
+        real_loss = adversarial_loss(discriminator(real_imgs), real)
+        fake_loss = adversarial_loss(discriminator(generated_imgs.detach()), fake)
+        d_loss = (real_loss + fake_loss) / 2
+
+        d_loss.backward()
+        optimizer_D.step()
+
+        done = epoch * len(dataloader) + i
+
+        if done % sample_interval == 0:
+            save_image(generated_imgs.data[:25], f"data{epoch}.jpg", nrow=5, normalize=True)
+
+    print(f"[Epoch {epoch}/{n_epochs}] [D loss: {d_loss.item():.6f}] [G loss: {g_loss.item():.6f}] [Elapsed Time: {time.time() - start_time:.2f}s]")
+
