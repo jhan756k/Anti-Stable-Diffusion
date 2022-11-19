@@ -3,17 +3,18 @@ import numpy as np
 from cannyEdge import canny
 
 # 가우스 필터 구현하고 원본이미지의 (x,y)에 가우스 커널 적용 
-# 5*5 kernel, sigma = 5
+# 5*5 kernel, sigma = 3
+
+imgname = "forest"
 
 kernel = cv2.getGaussianKernel(5, 3)
 kernel2d = np.outer(kernel, kernel.transpose())
 kernel2d-=1
 kernel2d= np.abs(kernel2d)
-kernel2d+=0.02
+kernel2d+=0.01
 print(kernel2d)
 
 fpath = r"C:\Users\jhan7\Desktop\Anti Stable Diffusion"
-imgname = "forest"
 
 canny(imgname)
 
