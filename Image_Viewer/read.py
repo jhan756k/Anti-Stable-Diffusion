@@ -16,7 +16,7 @@ for i in range(size[0]):
         sp = j*9
         img[i][j] = [int(content[i][sp:sp+3]), int(content[i][sp+3:sp+6]), int(content[i][sp+6:sp+9])]
 
-cv2.imshow("Image", img)
+cv2.imshow("Press C to terminate", img)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 

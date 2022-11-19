@@ -12,6 +12,6 @@ for x in range(img.shape[0]):
         text += (str(img[x, y][0]).zfill(3) + str(img[x, y][1]).zfill(3) + str(img[x, y][2]).zfill(3))
     text += " "
 
-comp_text = zlib.compress(text.encode("utf-8"))
+comp_text = zlib.compress(text.encode("utf-8"), 9)
 file.write(comp_text)
 file.close()

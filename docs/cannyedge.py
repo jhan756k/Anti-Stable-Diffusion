@@ -1,9 +1,8 @@
-import numpy as np
-import cv2 as cv
+import cv2
 from matplotlib import pyplot as plt
 
-img = cv.imread('messi5.jpg',0)
-edges = cv.Canny(img,100,200)
+img = cv2.imread('./egon.png',0)
+edges = cv2.Canny(img,100,200)
 
 plt.subplot(121),plt.imshow(img,cmap = 'gray')
 plt.title('Original Image'), plt.xticks([]), plt.yticks([])
