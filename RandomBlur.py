@@ -1,7 +1,7 @@
 import cv2, random
 image = cv2.imread("./images/research_image/eagle.jpeg")
 
-blur_rate = 1
+blur_rate = 0.5
 cnt = 0
 
 for x in range(image.shape[0]):
