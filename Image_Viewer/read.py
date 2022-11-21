@@ -1,7 +1,7 @@
 import numpy as np
 import cv2, zlib
 
-file = open("eagle.jh", "rb")
+file = open("eagle.jhp", "rb")
 content = zlib.decompress(file.read()).decode("utf-8")
 stmp = content[:12]
 size = [int(stmp[:4]), int(stmp[4:8]), int(stmp[8:12])]
