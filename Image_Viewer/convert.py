@@ -1,7 +1,7 @@
 import os, cv2, zlib
 import time
 
-file = open("eagle.jh", "wb")
+file = open("eagle.jhp", "wb")
 
 path = os.getcwd()
 img = cv2.imread("{p}/images/research_image/eagle.jpeg".format(p=path))

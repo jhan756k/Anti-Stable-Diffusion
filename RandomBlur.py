@@ -11,5 +11,5 @@ for x in range(image.shape[0]):
             cnt+=1
 
 print(cnt/(image.shape[0]*image.shape[1])*100)
-# 10 25 80 100
+
 cv2.imwrite("./images/randomblur_image/eagle_blur_{r}.png".format(r=blur_rate), image)
