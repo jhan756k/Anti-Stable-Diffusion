@@ -2,16 +2,18 @@ import cv2, os
 import numpy as np
 from cannyEdge import canny
 
-kernel = cv2.getGaussianKernel(5, 3)
-kernel2d = np.outer(kernel, kernel.transpose())
-kernel2d-=1
-kernel2d= np.abs(kernel2d)
-kernel2d+=0.02
-print(kernel2d)
+kernel2d = np.array([
+    [0.9782436, 0.97248424, 0.97034105, 0.97248424, 0.9782436 ],
+    [0.97248424, 0.98568037, 0.98314849, 0.98568037, 0.97248424],
+    [0.97034105, 0.98314849, 0.99047197, 0.98314849, 0.97034105],
+    [0.97248424, 0.98568037, 0.98314849, 0.98568037, 0.97248424],
+    [0.9782436, 0.97248424, 0.97034105, 0.97248424, 0.9782436 ]
+])
+
+kernel2d = np.array(kernel2d)
 
 path = os.getcwd()
 imgname = "forest"
-
 canny(imgname)
 
 cannyimg = cv2.imread("{p}/images/canny_image/{ing}_canny.png".format(p=path, ing=imgname), cv2.IMREAD_GRAYSCALE)
@@ -28,7 +30,7 @@ for x in range(0, cannyimg.shape[0]):
                         if 0<=x+tx-2<cannyimg.shape[0] and 0<=y+ty-2<cannyimg.shape[1]:
                             orig_img[x+tx-2][y+ty-2][i] *= kernel2d[tx][ty]
             
-cv2.imwrite("{p}/images/edgeblur_image/{ing}.png".format(p=path, ing=imgname), orig_img)
+cv2.imwrite("{p}/images/edgeblur_image/{ing}_edgeblur.png".format(p=path, ing=imgname), orig_img)
 
 '''
 dx = [1, 0, -1, 0]

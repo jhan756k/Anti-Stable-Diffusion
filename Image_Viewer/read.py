@@ -3,9 +3,11 @@ import cv2, time
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import AES, PKCS1_OAEP
 
+imgname = "forest"
+
 start = time.perf_counter()
 
-file = open("forest.jhp", "rb")
+file = open("{ing}.jhp".format(ing=imgname), "rb")
 
 private_key = RSA.import_key(open("private.pem").read())
 

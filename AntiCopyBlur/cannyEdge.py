@@ -10,4 +10,4 @@ def canny(imgname):
     
     edge1 = cv2.Canny(img, min_threshold, max_threshold)
 
-    cv2.imwrite("{p}/images/original_image/{ing}_canny.png".format(p=path, ing=imgname), edge1)
+    cv2.imwrite("{p}/images/canny_image/{ing}_canny.png".format(p=path, ing=imgname), edge1)

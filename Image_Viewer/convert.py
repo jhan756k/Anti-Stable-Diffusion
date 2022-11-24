@@ -3,10 +3,12 @@ from Crypto.PublicKey import RSA
 from Crypto.Random import get_random_bytes
 from Crypto.Cipher import AES, PKCS1_OAEP
 
+imgname = "forest"
+
 start = time.perf_counter()
 
 path = os.getcwd()
-img = cv2.imread("{p}/images/original_image/forest.png".format(p=path))
+img = cv2.imread("{p}/images/original_image/{ing}.png".format(p=path, ing=imgname))
 
 text = str(img.shape[0]).zfill(4) + str(img.shape[1]).zfill(4) + str(img.shape[2]).zfill(4)
 
@@ -33,7 +35,7 @@ enc_session_key = cipher_rsa.encrypt(session_key)
 cipher_aes = AES.new(session_key, AES.MODE_EAX)
 ciphertext, tag = cipher_aes.encrypt_and_digest(data)
 
-file = open("forest.jhp", "wb")
+file = open("{ing}.jhp".format(ing=imgname), "wb")
 [ file.write(x) for x in (enc_session_key, cipher_aes.nonce, tag, ciphertext) ]
 file.close()
 
