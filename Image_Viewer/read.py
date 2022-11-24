@@ -1,9 +1,7 @@
 import numpy as np
-import cv2, zlib
+import cv2, zlib, time
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import AES, PKCS1_OAEP
-
-import time
 
 file = open("forest.jhp", "rb")
 

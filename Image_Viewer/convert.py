@@ -1,9 +1,7 @@
-import os, cv2, zlib
-from Crypto.PublicKey import RSA
+import os, cv2, zlib, time
 from Crypto.PublicKey import RSA
 from Crypto.Random import get_random_bytes
 from Crypto.Cipher import AES, PKCS1_OAEP
-import time
 
 file = open("eagle.jhp", "wb")
 
