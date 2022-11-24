@@ -1,25 +1,21 @@
-import cv2
+import cv2, os
 import numpy as np
 from cannyEdge import canny
-
-# 가우스 필터 구현하고 원본이미지의 (x,y)에 가우스 커널 적용 
-# 5*5 kernel, sigma = 3
-
-imgname = "forest"
 
 kernel = cv2.getGaussianKernel(5, 3)
 kernel2d = np.outer(kernel, kernel.transpose())
 kernel2d-=1
 kernel2d= np.abs(kernel2d)
-kernel2d+=0.01
+kernel2d+=0.02
 print(kernel2d)
 
-fpath = r"C:\Users\jhan7\Desktop\Anti Stable Diffusion"
+path = os.getcwd()
+imgname = "forest"
 
 canny(imgname)
 
-cannyimg = cv2.imread("{fp}\canny_image\{imn}_canny.png".format(fp=fpath, imn=imgname), cv2.IMREAD_GRAYSCALE)
-orig_img = cv2.imread("{fp}\original_image\{imn}.png".format(fp=fpath, imn=imgname))
+cannyimg = cv2.imread("{p}/images/canny_image/{ing}_canny.png".format(p=path, ing=imgname), cv2.IMREAD_GRAYSCALE)
+orig_img = cv2.imread("{p}/images/original_image/{ing}.png".format(p=path, ing=imgname))
 
 for x in range(0, cannyimg.shape[0]):
     for y in range(0, cannyimg.shape[1]):
@@ -32,7 +28,7 @@ for x in range(0, cannyimg.shape[0]):
                         if 0<=x+tx-2<cannyimg.shape[0] and 0<=y+ty-2<cannyimg.shape[1]:
                             orig_img[x+tx-2][y+ty-2][i] *= kernel2d[tx][ty]
             
-cv2.imwrite("{fp}\edgeblur_image\{imn}_edgeblur.png".format(fp=fpath, imn=imgname), orig_img)
+cv2.imwrite("{p}/images/edgeblur_image/{ing}.png".format(p=path, ing=imgname), orig_img)
 
 '''
 dx = [1, 0, -1, 0]
