@@ -3,6 +3,8 @@ import cv2, zlib
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import AES, PKCS1_OAEP
 
+import time
+
 file = open("forest.jhp", "rb")
 
 private_key = RSA.import_key(open("private.pem").read())
@@ -30,6 +32,11 @@ for i in range(size[0]):
     for j in range(size[1]):
         img[i][j] = [int(content[sp:sp+3]), int(content[sp+3:sp+6]), int(content[sp+6:sp+9])]
         sp += 9
+
+
+end = time.perf_counter()
+
+# print("Time taken: {t}".format(t=end-start))
 
 cv2.imshow("Press c to terminate", img)
 cv2.waitKey(0)

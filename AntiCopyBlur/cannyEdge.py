@@ -1,4 +1,3 @@
-# Canny edge module file
 import cv2
 
 fpath = r"C:\Users\jhan7\Desktop\Anti Stable Diffusion"

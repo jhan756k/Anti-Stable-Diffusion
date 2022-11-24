@@ -3,9 +3,14 @@ from Crypto.PublicKey import RSA
 from Crypto.PublicKey import RSA
 from Crypto.Random import get_random_bytes
 from Crypto.Cipher import AES, PKCS1_OAEP
+import time
+
+file = open("eagle.jhp", "wb")
 
 path = os.getcwd()
 img = cv2.imread("{p}/images/original_image/forest.png".format(p=path))
+
+start = time.perf_counter()
 
 text = str(img.shape[0]).zfill(4) + str(img.shape[1]).zfill(4) + str(img.shape[2]).zfill(4)
 
@@ -36,3 +41,10 @@ ciphertext, tag = cipher_aes.encrypt_and_digest(data)
 # comp_text = zlib.compress(text.encode("utf-8"), 9)
 [ file_out.write(x) for x in (enc_session_key, cipher_aes.nonce, tag, ciphertext) ]
 file_out.close()
+comp_text = zlib.compress(text.encode("utf-8"), 9)
+file.write(comp_text)
+file.close()
+
+end = time.perf_counter()
+
+print("Time taken: {t}".format(t=end-start))
