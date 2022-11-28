@@ -1,5 +1,5 @@
-#define ZLIB_INTERNAL
-#include "zlib.h"
+#define LIB_INTERNAL
+#include "lib.h"
 
 int ZEXPORT compress2(dest, destLen, source, sourceLen, level)
     Bytef *dest;

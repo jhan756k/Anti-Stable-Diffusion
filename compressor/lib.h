@@ -1,5 +1,5 @@
-#ifndef ZLIB_H
-#define ZLIB_H
+#ifndef LIB_H
+#define LIB_H
 
 #include "zconf.h"
 
@@ -43,10 +43,6 @@ typedef struct z_stream_s {
 
 typedef z_stream FAR *z_streamp;
 
-/*
-     gzip header information passed to and from zlib routines.  See RFC 1952
-  for more details on the meanings of these fields.
-*/
 typedef struct gz_header_s {
     int     text;       /* true if compressed data believed to be text */
     uLong   time;       /* modification time */
@@ -66,7 +62,7 @@ typedef struct gz_header_s {
 
 typedef gz_header FAR *gz_headerp;
 
-                        /* constants */
+/* constants */
 
 #define Z_NO_FLUSH      0
 #define Z_PARTIAL_FLUSH 1
@@ -113,7 +109,7 @@ typedef gz_header FAR *gz_headerp;
 /* for compatibility with versions < 1.0.2 */
 
 
-                        /* basic functions */
+/* basic functions */
 
 ZEXTERN const char * ZEXPORT zlibVersion OF((void));
 
@@ -126,7 +122,7 @@ ZEXTERN int ZEXPORT inflate OF((z_streamp strm, int flush));
 
 ZEXTERN int ZEXPORT inflateEnd OF((z_streamp strm));
 
-                        /* Advanced functions */
+/* Advanced functions */
 
 ZEXTERN int ZEXPORT deflateSetDictionary OF((z_streamp strm,
                                              const Bytef *dictionary,
@@ -153,51 +149,14 @@ ZEXTERN int ZEXPORT deflateTune OF((z_streamp strm,
 
 ZEXTERN uLong ZEXPORT deflateBound OF((z_streamp strm,
                                        uLong sourceLen));
-/*
-     deflateBound() returns an upper bound on the compressed size after
-   deflation of sourceLen bytes.  It must be called after deflateInit() or
-   deflateInit2(), and after deflateSetHeader(), if used.  This would be used
-   to allocate an output buffer for deflation in a single pass, and so would be
-   called before deflate().  If that first deflate() call is provided the
-   sourceLen input bytes, an output buffer allocated to the size returned by
-   deflateBound(), and the flush value Z_FINISH, then deflate() is guaranteed
-   to return Z_STREAM_END.  Note that it is possible for the compressed size to
-   be larger than the value returned by deflateBound() if flush options other
-   than Z_FINISH or Z_NO_FLUSH are used.
-*/
 
 ZEXTERN int ZEXPORT deflatePending OF((z_streamp strm,
                                        unsigned *pending,
                                        int *bits));
-/*
-     deflatePending() returns the number of bytes and bits of output that have
-   been generated, but not yet provided in the available output.  The bytes not
-   provided would be due to the available output space having being consumed.
-   The number of bits of output not provided are between 0 and 7, where they
-   await more bits to join them in order to fill out a full byte.  If pending
-   or bits are Z_NULL, then those values are not set.
-
-     deflatePending returns Z_OK if success, or Z_STREAM_ERROR if the source
-   stream state was inconsistent.
- */
 
 ZEXTERN int ZEXPORT deflatePrime OF((z_streamp strm,
                                      int bits,
                                      int value));
-/*
-     deflatePrime() inserts bits in the deflate output stream.  The intent
-   is that this function is used to start off the deflate output with the bits
-   leftover from a previous deflate stream when appending to it.  As such, this
-   function can only be used for raw deflate, and must be used before the first
-   deflate() call after a deflateInit2() or deflateReset().  bits must be less
-   than or equal to 16, and that many of the least significant bits of value
-   will be inserted in the output.
-
-     deflatePrime returns Z_OK if success, Z_BUF_ERROR if there was not enough
-   room in the internal buffer to insert the bits, or Z_STREAM_ERROR if the
-   source stream state was inconsistent.
-*/
-
 ZEXTERN int ZEXPORT deflateSetHeader OF((z_streamp strm,
                                          gz_headerp head));
 
@@ -306,7 +265,7 @@ ZEXTERN uLong ZEXPORT crc32 OF((uLong crc, const Bytef *buf, uInt len));
 ZEXTERN uLong ZEXPORT crc32_z OF((uLong crc, const Bytef *buf,
                                   z_size_t len));
 
-ZEXTERN uLong ZEXPORT crc32_combine_op OF((uLong crc1, uLong crc2, uLong op));
+ZEXTERN uLong ZEXPORT crc32_combine_oㄴp OF((uLong crc1, uLong crc2, uLong op));
 ZEXTERN int ZEXPORT deflateInit_ OF((z_streamp strm, int level,
                                      const char *version, int stream_size));
 ZEXTERN int ZEXPORT inflateInit_ OF((z_streamp strm,
