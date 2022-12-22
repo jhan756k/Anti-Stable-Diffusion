@@ -243,13 +243,13 @@ ZEXTERN int ZEXPORT gzungetc OF((int c, gzFile file));
 
 ZEXTERN int ZEXPORT gzflush OF((gzFile file, int flush));
 
-ZEXTERN int ZEXPORT    gzrewind OF((gzFile file));
+ZEXTERN int ZEXPORT gzrewind OF((gzFile file));
 
 ZEXTERN int ZEXPORT gzeof OF((gzFile file));
 
 ZEXTERN int ZEXPORT gzdirect OF((gzFile file));
 
-ZEXTERN int ZEXPORT    gzclose OF((gzFile file));
+ZEXTERN int ZEXPORT gzclose OF((gzFile file));
 
 ZEXTERN int ZEXPORT gzclose_r OF((gzFile file));
 ZEXTERN int ZEXPORT gzclose_w OF((gzFile file));
