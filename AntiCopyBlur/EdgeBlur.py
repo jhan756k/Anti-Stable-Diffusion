@@ -20,10 +20,10 @@ canny(imgname)
 cannyimg = cv2.imread("{p}/images/canny_image/{ing}_canny.png".format(p=path, ing=imgname), cv2.IMREAD_GRAYSCALE)
 orig_img = cv2.imread("{p}/images/original_image/{ing}.png".format(p=path, ing=imgname))
 
-n = 3 # 커널 크기
+n = 5 # 커널 크기
 
-for x in range(n-2, cannyimg.shape[0]-(n-2)):
-    for y in range(n-2, cannyimg.shape[1]-(n-2)):
+for x in range(n//2, cannyimg.shape[0]-(n//2)):
+    for y in range(n//2, cannyimg.shape[1]-(n//2)):
         if cannyimg[x][y] == 255:
             
             for p in range(3):
@@ -31,8 +31,8 @@ for x in range(n-2, cannyimg.shape[0]-(n-2)):
 
                 for i in range(n):
                     for j in range(n):
-                        sum += orig_img[x+i-(n-2)][y+j-(n-2)][p] # 커널 만들어서 여따 곱해도 됨 근데 너무 느림
-                orig_img[x][y][p] = sum // 9
+                        sum += orig_img[x+i-(n//2)][y+j-(n//2)][p] # 커널 만들어서 여따 곱해도 됨 근데 너무 느림
+                orig_img[x][y][p] = sum // (n*n)
 
             '''
             for tx in range(5):
