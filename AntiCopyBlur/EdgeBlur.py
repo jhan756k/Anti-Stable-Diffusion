@@ -14,13 +14,13 @@ kernel2d = np.array(kernel2d)
 '''
 
 path = os.getcwd()
-imgname = "forest"
+imgname = "eagle"
 canny(imgname)
 
 cannyimg = cv2.imread("{p}/images/canny_image/{ing}_canny.png".format(p=path, ing=imgname), cv2.IMREAD_GRAYSCALE)
 orig_img = cv2.imread("{p}/images/original_image/{ing}.png".format(p=path, ing=imgname))
 
-n = 5 # 커널 크기
+n = 20 # 커널 크기
 
 for x in range(n//2, cannyimg.shape[0]-(n//2)):
     for y in range(n//2, cannyimg.shape[1]-(n//2)):
