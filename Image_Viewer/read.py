@@ -3,7 +3,7 @@ import cv2, time
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import AES, PKCS1_OAEP
 
-imgname = "forest"
+imgname = "egon"
 
 start = time.perf_counter()
 
