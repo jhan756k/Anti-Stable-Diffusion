@@ -1,16 +1,11 @@
 import cv2, os
+import numpy as np
 from skimage.metrics import structural_similarity as ssim, peak_signal_noise_ratio as psnr
 from cannyEdge import canny
 
 '''
-kernel2d = np.array([
-    [0.9782436, 0.97248424, 0.97034105, 0.97248424, 0.9782436 ],
-    [0.97248424, 0.98568037, 0.98314849, 0.98568037, 0.97248424],
-    [0.97034105, 0.98314849, 0.99047197, 0.98314849, 0.97034105],
-    [0.97248424, 0.98568037, 0.98314849, 0.98568037, 0.97248424],
-    [0.9782436, 0.97248424, 0.97034105, 0.97248424, 0.9782436 ]
-])
-kernel2d = np.array(kernel2d)
+kernel1d = cv2.getGaussianKernel(5, 3)
+kernel2d = np.outer(kernel1d, kernel1d.transpose())
 '''
 
 path = os.getcwd()
@@ -20,8 +15,8 @@ canny(imgname)
 cannyimg = cv2.imread("{p}/images/canny_image/{ing}_canny.png".format(p=path, ing=imgname), cv2.IMREAD_GRAYSCALE)   
 orig_img = cv2.imread("{p}/images/original_image/{ing}.png".format(p=path, ing=imgname))
 
-kernelSize = 5 # 블러 커널 크기 
-nearbyBlurSize = 5 # 블러 처리할 주변 픽셀 수
+kernelSize = 3 # 블러 커널 크기 
+nearbyBlurSize = 3 # 블러 처리할 주변 픽셀 수
 
 term = (kernelSize//2) + (nearbyBlurSize//2)
 
@@ -37,7 +32,8 @@ for x in range(term, cannyimg.shape[0]-term):
 
                             for i in range(kernelSize):
                                 for j in range(kernelSize):
-                                    sum += orig_img[t+i-term][c+j-term][p] 
+                                    sum += orig_img[t+i-term][c+j-term][p] # * (1 - kernel2d[i][j])
+
                             orig_img[t][c][p] = sum // (kernelSize*kernelSize)
 
             '''
