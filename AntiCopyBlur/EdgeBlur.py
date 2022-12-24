@@ -45,8 +45,10 @@ for x in range(term, cannyimg.shape[0]-term):
                             orig_img[x+tx-2][y+ty-2][i] *= kernel2d[tx][ty]
             '''
 
+'''
 cv2.imwrite("{p}/images/edgeblur_image/{ing}_edgeblur.png".format(p=path, ing=imgname), orig_img)
 print(imgname, psnr(cv2.imread("{p}/images/original_image/{ing}.png".format(p=path, ing=imgname)), cv2.imread("{p}/images/edgeblur_image/{ing}_edgeblur.png".format(p=path, ing=imgname))), ssim(cv2.imread("{p}/images/original_image/{ing}.png".format(p=path, ing=imgname)), cv2.imread("{p}/images/edgeblur_image/{ing}_edgeblur.png".format(p=path, ing=imgname)), multichannel=True))
+'''
 
 '''
 dx = [1, 0, -1, 0]
