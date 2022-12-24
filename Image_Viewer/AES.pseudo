@@ -1,0 +1,23 @@
+    for (round = 1; round<Nr; round++)
+    {
+        SubBytes();
+        ShiftRows();
+        MixColumns();
+        AddRoundKey(round);
+    }
+ 
+    SubBytes();
+    ShiftRows();
+    AddRoundKey(Nr);
+
+FOR round = 1 TO totalRound STEP 1
+    SubBytes(stateMatrix)
+    ShiftRows(stateMatrix)
+    MixColumns(stateMatrix)
+    AddRoundKey(stateMatrix, totalRound)
+ENDFOR
+NEXT
+
+SubBytes(stateMatrix);
+ShiftRows(stateMatrix);
+AddRoundKey(stateMatrix, totalRound);
