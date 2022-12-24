@@ -41,7 +41,7 @@ for x in range(term, cannyimg.shape[0]-term):
                                     sum += orig_img[t+i-term][c+j-term][p] # * (1 - kernel2d[i][j])
 
                             orig_img[t][c][p] = sum // (kernelSize*kernelSize)
-
+                            
 eb = time.perf_counter()
 
 print("Edge Blur Time: ", eb-sb)
