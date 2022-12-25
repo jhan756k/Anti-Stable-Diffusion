@@ -5,7 +5,6 @@
         MixColumns();
         AddRoundKey(round);
     }
- 
     SubBytes();
     ShiftRows();
     AddRoundKey(Nr);
