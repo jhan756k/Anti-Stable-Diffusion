@@ -9,7 +9,7 @@ kernel2d = np.outer(kernel1d, kernel1d.transpose())
 '''
 
 path = os.getcwd()
-imgname = "pelican"
+imgname = "eagle"
 bc = time.perf_counter()
 canny(imgname)
 ac = time.perf_counter()
@@ -20,7 +20,7 @@ sb = time.perf_counter()
 cannyimg = cv2.imread("{p}/images/canny_image/{ing}_canny.png".format(p=path, ing=imgname), cv2.IMREAD_GRAYSCALE)   
 orig_img = cv2.imread("{p}/images/original_image/{ing}.png".format(p=path, ing=imgname))
 
-kernelSize = 3 # 블러 커널 크기 
+kernelSize = 5 # 블러 커널 크기 
 nearbyBlurSize = 3 # 블러 처리할 주변 픽셀 수
 
 term = (kernelSize//2) + (nearbyBlurSize//2)
